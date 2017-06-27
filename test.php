@@ -8,39 +8,6 @@
         <link rel="stylesheet" href="test.css">
     </head>
     <body>
-    <table border="1">
-        <tr>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        </tr>
-         <tr>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        </tr>
-         <tr>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        </tr>
-         <tr>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        <td>gia thanh phat</td>
-        </tr>
-    </table>
+    <p>giathanhphat</p>
     </body>
 </html>

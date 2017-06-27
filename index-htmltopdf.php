@@ -7,29 +7,41 @@ require_once __DIR__ . '/vendor/autoload.php';
 //		and its directory location on your server
 //$rendererName = PHPExcel_Settings::PDF_RENDERER_TCPDF;
 $rendererName = PHPExcel_Settings::PDF_RENDERER_MPDF;
-// $rendererName = PHPExcel_Settings::PDF_RENDERER_DOMPDF;
-//$rendererLibrary = 'tcPDF5.9';
+// // $rendererName = PHPExcel_Settings::PDF_RENDERER_DOMPDF;
+// //$rendererLibrary = 'tcPDF5.9';
 $rendererLibrary = 'mpdf61';
-// $rendererLibrary = 'domPDF0.6.0beta3';
-// $rendererLibraryPath = '/php/libraries/PDF/' . $rendererLibrary;
+// // $rendererLibrary = 'domPDF0.6.0beta3';
+// // $rendererLibraryPath = '/php/libraries/PDF/' . $rendererLibrary;
 $rendererLibraryPath = $rendererLibrary;
 
 // Create new PHPExcel object
 $objPHPExcel = new PHPExcel();
 
 // Set document properties
-$objPHPExcel->getProperties()->setCreator("Maarten Balliauw")
-							 ->setLastModifiedBy("Maarten Balliauw")
-							 ->setTitle("PDF Test Document")
+$objPHPExcel->getProperties()->setCreator("Gia Thanh Phat")
+							 ->setLastModifiedBy("Gia Thanh Phat")
+							 ->setTitle("Convert PDF")
 							 ->setSubject("PDF Test Document")
-							 ->setDescription("Test document for PDF, generated using PHP classes.")
-							 ->setKeywords("pdf php")
+							 ->setDescription("Convert PDF using PHPExcel")
+							 ->setKeywords("pdf phpexcel")
 							 ->setCategory("Test result file");
 
+
 $objReader = new PHPExcel_Reader_HTML();
-
 $objPHPExcel = $objReader->load("test.php");
+$objPHPExcel->getActiveSheet()->getHeaderFooter()->setOddHeader('& C & H Please coi tài liệu này là bí mật!');
+$objPHPExcel->getDefaultStyle()->getFont()->setName('Arial');
+$objPHPExcel->getDefaultStyle()->getFont()->setSize(20);
+$objPHPExcel->getDefaultStyle()->getFont()->getColor()->setRGB('ff0000');
+// $objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE); //theo chiều rộng
+$objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
+$objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->getColor()->setRGB('a1a1a1');
+$objPHPExcel->getActiveSheet()->getStyle('A1')->getBorders()->getTop()->setBorderStyle('dashed');
+$objPHPExcel->getActiveSheet()->getStyle('A1')->getBorders()->getRight()->setBorderStyle('dashed');
+$objPHPExcel->getActiveSheet()->getStyle('A1')->getBorders()->getBottom()->setBorderStyle('dashed');
+$objPHPExcel->getActiveSheet()->getStyle('A1')->getBorders()->getLeft()->setBorderStyle('dashed');
 
+// $objPHPExcel->getActiveSheet()->getHeaderFooter()->setOddFooter('giathanhphat');
 if (!PHPExcel_Settings::setPdfRenderer(
 		$rendererName,
 		$rendererLibraryPath
@@ -41,6 +53,10 @@ if (!PHPExcel_Settings::setPdfRenderer(
 	);
 }
 
-$objWriter = new PHPExcel_Writer_PDF($objPHPExcel);
-$objWriter->save("htmltopdf0.pdf");
+header('Content-Type: application/pdf');
+header('Content-Disposition: attachment; filename="hahahoho.pdf"');
+header('Cache-Control: max-age=0');
+
+	$objWriter = new PHPExcel_Writer_PDF($objPHPExcel);
+	$objWriter->save('php://output');
 ?>

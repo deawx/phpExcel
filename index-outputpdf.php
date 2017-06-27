@@ -65,7 +65,6 @@ $objPHPExcel->getProperties()->setCreator("Maarten Balliauw")
 							 ->setKeywords("pdf php")
 							 ->setCategory("Test result file");
 
-
 // Add some data
 $objPHPExcel->setActiveSheetIndex(0)
             ->setCellValue('A1', 'Hello')
@@ -75,18 +74,6 @@ $objPHPExcel->setActiveSheetIndex(0)
 
 // Miscellaneous glyphs, UTF-8
 $objPHPExcel->setActiveSheetIndex(0)
-            ->setCellValue('A4', 'Miscellaneous glyphs')
-            ->setCellValue('A5', 'éàèùâêîôûëïüÿäöüç');
-
-// Add some data
-$objPHPExcel->setActiveSheetIndex(1)
-            ->setCellValue('A1', 'Hello')
-            ->setCellValue('B2', 'world!')
-            ->setCellValue('C1', 'Hello')
-            ->setCellValue('D2', 'world!');
-
-// Miscellaneous glyphs, UTF-8
-$objPHPExcel->setActiveSheetIndex(1)
             ->setCellValue('A4', 'Miscellaneous glyphs')
             ->setCellValue('A5', 'éàèùâêîôûëïüÿäöüç');
 
@@ -110,13 +97,18 @@ if (!PHPExcel_Settings::setPdfRenderer(
 }
 
 
-// Redirect output to a client’s web browser (PDF)
-// header('Content-Type: application/pdf');
-// header('Content-Disposition: attachment;filename="01simple.pdf"');
-// header('Cache-Control: max-age=0');
+//Redirect output to a client’s web browser (PDF)
+header('Content-Type: application/pdf');
+header('Content-Disposition: attachment;filename="hahahoho.pdf"');
+header('Cache-Control: max-age=0');
+header("Content-Type: application/force-download");
+header("Content-Type: application/octet-stream");
+header("Content-Type: application/download");
+header("Content-Description: File Transfer");
+header("Content-Transfer-Encoding: Binary");
 
 // $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'PDF');
 // $objWriter->save('php://output');
 $objWriter = new PHPExcel_Writer_PDF($objPHPExcel);
-$objWriter->save("06featuredemo.pdf");
+$objWriter->save('php://output');
 ?>
