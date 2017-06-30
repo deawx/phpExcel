@@ -29,6 +29,7 @@ $objPHPExcel->getProperties()->setCreator("Gia Thanh Phat")
 
 $objReader = new PHPExcel_Reader_HTML();
 $objPHPExcel = $objReader->load("test.php");
+$objPHPExcel->getActiveSheet()->setCellValue('A12', 'Title');
 $objPHPExcel->getActiveSheet()->getHeaderFooter()->setOddHeader('& C & H Please coi tài liệu này là bí mật!');
 $objPHPExcel->getDefaultStyle()->getFont()->setName('Arial');
 $objPHPExcel->getDefaultStyle()->getFont()->setSize(20);
